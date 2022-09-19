@@ -1,3 +1,4 @@
+from operator import ne
 import os
 
 def cpu_info():
@@ -45,3 +46,12 @@ def time_info():
     #Time info
     time_info = os.popen("date").read()
     return time_info.replace('\n','')
+
+def network_speed_test():
+    #Network Speed Test
+    network_speed_test = os.popen("speedtest-cli --secure").read()
+    network_speed = network_speed_test.split("\n")
+    
+    
+    return "Download Speed: {}  Upload Speed: {}".format(network_speed[6].replace("Download: ",""), network_speed[8].replace("Upload: ",""))
+
