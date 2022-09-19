@@ -1,12 +1,13 @@
 import os
 
 def cpu_info():
+    #CPU Model info
     cpu_info = os.popen("grep ^'model name' /proc/cpuinfo").read()
     cpu_info = cpu_info.replace('model name', '').split(':')
-    
     return cpu_info[1].replace('\n','')
 
 def ram_info():
+    #Total Memory / Used Memory
     MemTotal = os.popen("grep ^'MemTotal' /proc/meminfo").read()
     MemFree = os.popen("grep ^'MemFree' /proc/meminfo").read()
 
@@ -16,27 +17,31 @@ def ram_info():
     MemFree = MemFree.replace("MemFree:","").replace('kB','').replace(' ','')
     MemFree = int(MemFree) / float(1000000)
     
-    return "{}GB / {}GB".format(round(MemTotal,1), round(round(MemTotal,4) - round(MemFree,4), 2))
+    return "Total Memory : {}GB / Used Memory {}GB".format(round(MemTotal,1), round(round(MemTotal,4) - round(MemFree,4), 2))
     
 def os_info():
+    #OS info
     os_info = os.popen("grep ^'PRETTY_NAME' /etc/os-release").read()
-    
     return os_info.replace("PRETTY_NAME=","").replace('"',"").replace('\n','')
     
 def kernel_info():
+    #Kernel info
     kernel_info = os.popen("uname -r").read().replace('\n','')
-    
     return kernel_info
 
 def uptime_info():
+    #Uptime info
     uptime_info = os.popen("uptime").read().replace('\n','')
     uptime_info = uptime_info.split(",")
-    
     return uptime_info[0].replace("None","")
 
 def network_info():
+    #Local Network IP info
     network_info = os.popen("ip addr").read()
     network_info = network_info.split("inet")
-    
     return network_info[3].split("/")[0].replace(" ","")
 
+def time_info():
+    #Time info
+    time_info = os.popen("date").read()
+    return time_info.replace('\n','')
