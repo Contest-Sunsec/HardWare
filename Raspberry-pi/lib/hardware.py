@@ -1,4 +1,3 @@
-from operator import ne
 import os
 
 def cpu_info():
@@ -52,6 +51,15 @@ def network_speed_test():
     network_speed_test = os.popen("speedtest-cli --secure").read()
     network_speed = network_speed_test.split("\n")
     
-    
     return "Download Speed: {}  Upload Speed: {}".format(network_speed[6].replace("Download: ",""), network_speed[8].replace("Upload: ",""))
+
+def ping(address):
+    #ping address
+    ping = os.popen("ping -c 1 {}".format(address)).read()
+    return ping
+
+def hardware_voltage():
+    #Hardware Voltage
+    hardware_voltage = os.popen("vcgencmd measure_volts").read()
+    return hardware_voltage.replace("volt=","").replace("\n","")
 
