@@ -7,21 +7,21 @@ def hardware_info():
     info =  {
         "time":time.time(),
         "uptime":"hi",#hardware.uptime_info(),
-        "latitude":"dfedf",
+        "latitude":"dfedf", #Hardware GPS Sendsor Value 
         "longitude":"dfedf",
-        "internet":"hi",#hardware.network_speed_test()
+        "internet":hardware.network_speed_test(),#hardware.network_speed_test()
     }
     
     return json.dumps(info)
 
 def sensor_info():
     info = {
-        "soil_ec": 0,
-        "soil_temp": 0,
-        "soil_humidity": 0,
-        "air_temp": 0,
-        "air_humidity": 0,
-        "sunlight": 0,
+        "soil_ec": 0, #토양 EC 센서
+        "soil_temp": 0, #토양 온도 센서
+        "soil_humidity": 0, #토양 습도 센서
+        "air_temp": 0, #대기 온도 센서
+        "air_humidity": 0, #대기 습도 센서
+        "sunlight": 0, #광량 센서
     }
     
     return json.dumps(info)
