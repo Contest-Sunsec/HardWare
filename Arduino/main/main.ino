@@ -25,6 +25,7 @@ void loop() {
   int air_hum = dht.readHumidity();
   int soil_hum = analogRead(soil_sensor);
   
+  
 
   delay(1500);
   
