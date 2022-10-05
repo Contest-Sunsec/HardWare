@@ -14,15 +14,15 @@ def hardware_info():
     
     return json.dumps(info)
 
-def sensor_info():
+def return_data():
+    content = arduino_data.get_sensor()
     info = {
-        "soil_ec": 0, #토양 EC 센서
-        "soil_temp": 0, #토양 온도 센서
-        "soil_humidity": 0, #토양 습도 센서
-        "air_temp": 0, #대기 온도 센서
-        "air_humidity": 0, #대기 습도 센서
-        "sunlight": 0, #광량 센서
+        "soil_ec" = content[0]
+        "soil_temp" = content[2]
+        "soil_humidity" = content[4]
+        "air_temp" = content[6]
+        "air_humidity" = content[8]
+        "sunlight" = content[10]
     }
-    
-    return json.dumps(info)
+    return json.dumps(info)    
 
