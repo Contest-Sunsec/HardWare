@@ -10,7 +10,7 @@
 #define GPS_RX 3 //GPS RX pin
 #define GPS_TX 4 //GPS TX pin
 
-int air_temp = 0 , air_hum = 0 , soil_hum = 0 , light = 0 ;
+int soil_ec = 0, soil_temp = 0, soil_hum = 0, air_temp = 0 , air_hum = 0 , soil_hum = 0 , light = 0 ; //sensor data
 
 void setup() {
 
@@ -19,8 +19,10 @@ void setup() {
   digitalWrite(blue,OUTPUT);
   digitalWrite(green,OUTPUT);
 
-  DHT dht(DHTPIN, DHTTYPE);
+  DHT dht(DHTPIN, DHTTYPE); //air temp, humidity Sensor
   Serial.println("System Start...");
+
+  //LED Test
 
   digitalWrite(red,HIGH);
   digitalWrite(blue,LOW);
@@ -42,21 +44,23 @@ void loop() {
   if(serial.available() > 0){
     char c = serial.read();
     if(c == '1'){
-      air_temp = dht.readTemperture();
-      air_hum = dht.readHumidity();
-      soil_hum = analogRead(soil_sensor);
-      light = analogRead(light_sensor);
+      air_temp = dht.readTemperture(); //read air temp
+      air_hum = dht.readHumidity(); //read air humidity
+      soil_hum = analogRead(soil_sensor); //read soil humidity
+      light = analogRead(light_sensor); //read light
 
-      Serial.print("Air Temperature: " + air_temp);
-      Serial.print(", Air Humidity: " + air_hum);
-      Serial.print(", Soil Humidity: " + soil_hum);
-      Serial.println(", Light: " + light);
+      Serial.print("soil_ec:" + ); //send soil ec
+      Serial.print("Air Temperature: " + air_temp); //send air temp
+      Serial.print(", Air Humidity: " + air_hum); //send air humidity
+      Serial.print(", Soil Humidity: " + soil_hum); //send soil humidity
+      Serial.println(", Light: " + light); //send light
       
       digitalWrite(red,LOW);
       digitalWrite(blue,LOW);
       digitalWrite(green,HIGH);
       delay(100);
       digitalWrite(green,LOW);
+
     }
     if(c == '2'){
       

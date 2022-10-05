@@ -1,12 +1,11 @@
 from urllib import request
 import hardware
-import startup
 import json_data
 import time
 import requests
 
-startup.apt_update()
-startup.apt_install()
+hardware.apt_update()
+hardware.apt_install()
 
 url = open("config.txt").read()
 headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}

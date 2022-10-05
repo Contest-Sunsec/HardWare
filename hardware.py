@@ -63,3 +63,12 @@ def hardware_voltage():
     hardware_voltage = os.popen("vcgencmd measure_volts").read()
     return hardware_voltage.replace("volt=","").replace("\n","")
 
+def apt_update():
+    os.system("sudo apt update")
+    os.system("sudo apt upgrade -y")
+
+def apt_install():
+    os.system("apt install -y python3-pip")
+    os.system("apt install -y Arduino")
+    os.system("apt install -y speedtest-cli")
+    
