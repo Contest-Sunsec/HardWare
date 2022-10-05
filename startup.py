@@ -8,3 +8,4 @@ def apt_install():
     os.system("apt install -y python3-pip")
     os.system("apt install -y Arduino")
     os.system("apt install -y speedtest-cli")
+    

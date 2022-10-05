@@ -25,3 +25,4 @@ def sensor_info():
     }
     
     return json.dumps(info)
+
