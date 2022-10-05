@@ -1,10 +1,11 @@
+#include <DHT.h>
 
-int red = 6;
-int blue = 7;
-int green = 8;
-int soil_
-
-
+#define red 6
+#define blue 7
+#define green 8
+#define soil_sensor A1
+#define DHTPIN 2
+#define DHTTYPE DHT22
 
 void setup() {
 
@@ -12,13 +13,17 @@ void setup() {
   digitalWrite(red,OUTPUT);
   digitalWrite(blue,OUTPUT);
   digitalWrite(green,OUTPUT);
-  
-  Serial.println("shangus");
-  
 
+  DHT dht(DHTPIN, DHTTYPE);
+  Serial.println("System Start...");
+  
 }
 
 void loop() {
 
+  int air_temp = dht.readTemperture();
+  int air_hum = dht.readHumidity();
+  
+  
 
 }
