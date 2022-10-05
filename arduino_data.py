@@ -15,7 +15,3 @@ def get_info():
     seri.write('2'.encode()) #시리얼 포트에 데이터 전송
     content = seri.readline() #시리얼 포트에서 데이터 수신
     return content
-
-
-
-
