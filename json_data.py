@@ -18,10 +18,13 @@ def get_info():
     return content
 
 def hardware_info():
+    content = get_info()
+    content.split(' ')
     info =  {
+        "model" : "FARMSELT-123314-134134", #FARMSELT Model Name
         "time":time.time(),
-        "uptime":"hi",#hardware.uptime_info(),
-        "latitude":"dfedf", #Hardware GPS Sendsor Value 
+        "uptime":hardware.uptime_info,#hardware.uptime_info(),
+        "latitude": "dfdf", #Hardware GPS Sendsor Value 
         "longitude":"dfedf", #Hardware GPS Sendsor Value
         "internet":hardware.network_speed_test(),#hardware.network_speed_test()
     }
@@ -30,6 +33,7 @@ def hardware_info():
 
 def return_data():
     content = get_sensor()
+    content.split(' ')
     info = {
         "soil_ec" : content[0], #Soil EC Sensor Value
         "soil_temp" : content[2],#Soil Temperature Sensor Value

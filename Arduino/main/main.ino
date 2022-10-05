@@ -35,7 +35,7 @@ void setup() {
   digitalWrite(red,LOW);
   digitalWrite(blue,LOW);
   digitalWrite(green,HIGH);
-  
+  delay(100);
   digitalWrite(green,LOW);
   digitalWrite(blue,HIGH);
 }
@@ -49,7 +49,9 @@ void loop() {
       soil_hum = analogRead(soil_sensor); //read soil humidity
       light = analogRead(light_sensor); //read light
 
-      Serial.print("soil_ec:" + ); //send soil ec
+      Serial.print("soil_ec:" + soil_ec); //send soil ec
+      Serial.print("soil_temp:" + soil_temp); //send soil temp
+      Serial.print("soil_hum:" + soil_hum); //send soil humidity
       Serial.print("Air Temperature: " + air_temp); //send air temp
       Serial.print(", Air Humidity: " + air_hum); //send air humidity
       Serial.print(", Soil Humidity: " + soil_hum); //send soil humidity
