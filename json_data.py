@@ -24,8 +24,8 @@ def hardware_info():
         "model" : "FARMSELT-123314-134134", #FARMSELT Model Name
         "time":time.time(),
         "uptime":hardware.uptime_info,#hardware.uptime_info(),
-        "latitude": "dfdf", #Hardware GPS Sendsor Value 
-        "longitude":"dfedf", #Hardware GPS Sendsor Value
+        "latitude": content[1], #Hardware GPS Sendsor Value 
+        "longitude":content[3], #Hardware GPS Sendsor Value
         "internet":hardware.network_speed_test(),#hardware.network_speed_test()
     }
     
@@ -35,12 +35,12 @@ def return_data():
     content = get_sensor()
     content.split(' ')
     info = {
-        "soil_ec" : content[0], #Soil EC Sensor Value
-        "soil_temp" : content[2],#Soil Temperature Sensor Value
-        "soil_humidity" : content[4], #Soil Humidity Sensor Value
-        "air_temp" : content[6], #Air Temperature Sensor Value
-        "air_humidity" : content[8], #Air Humidity Sensor Value
-        "sunlight" : content[10], #Sunlight Sensor Value
+        "soil_ec" : content[1], #Soil EC Sensor Value
+        "soil_temp" : content[3],#Soil Temperature Sensor Value
+        "soil_humidity" : content[5], #Soil Humidity Sensor Value
+        "air_temp" : content[7], #Air Temperature Sensor Value
+        "air_humidity" : content[9], #Air Humidity Sensor Value
+        "sunlight" : content[11], #Sunlight Sensor Value
     }
     return json.dumps(info)    
 

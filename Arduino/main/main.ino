@@ -22,7 +22,7 @@ char c = ""; // \n 인지 구분 및 str에 저장
 String str = ""; // \n 전까지 c 값을 저장
 String targetStr = "GPGGA"; // str의 값이 NMEA의 GPGGA 값인지 지정
 
-void led() {
+void led() { //녹색 LED 깜빡임
   digitalWrite(red,LOW);
   digitalWrite(blue,LOW);
   digitalWrite(green,HIGH);
@@ -74,12 +74,12 @@ void loop() {
       light = analogRead(light_sensor); //read light
 
       Serial.print("soil_ec:" + soil_ec); //send soil ec
-      Serial.print("soil_temp:" + soil_temp); //send soil temp
-      Serial.print("soil_hum:" + soil_hum); //send soil humidity
-      Serial.print("Air Temperature: " + air_temp); //send air temp
-      Serial.print(", Air Humidity: " + air_hum); //send air humidity
-      Serial.print(", Soil Humidity: " + soil_hum); //send soil humidity
-      Serial.println(", Light: " + light); //send light
+      Serial.print(" soil_temp:" + soil_temp); //send soil temp
+      Serial.print(" soil_hum:" + soil_hum); //send soil humidity
+      Serial.print(" Air Temperature: " + air_temp); //send air temp
+      Serial.print(" Air Humidity: " + air_hum); //send air humidity
+      Serial.print(" Soil Humidity: " + soil_hum); //send soil humidity
+      Serial.println(" Light: " + light); //send light
       
       led();
 
@@ -88,7 +88,6 @@ void loop() {
         if(gpsSerial.available()) // gps 센서 통신 가능 여부 확인
     {
       c = gpsSerial.read(); //gps 센서 값 읽기
-      qmc.read(&x, &y, &z,&azimuth); //방위각 센서 값 읽어오기
       
       if(c == '\n')// \n 일시. 지금까지 저장된 str 값이 targetStr과 맞는지 구분
         { 
@@ -125,8 +124,6 @@ void loop() {
           Serial.println(LatF, 15);
           Serial.print("longitude: ");
           Serial.println(LongF, 15);
-          Serial.print("heading: "); //Heading 값 (방위각)
-          Serial.println(azimuth);
         }
 
         // str 값 초기화 
@@ -136,6 +133,9 @@ void loop() {
         { 
         str += c;
       }
+
+      led();
+    
     }
   }
 }
