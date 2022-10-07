@@ -27,6 +27,7 @@ def hardware_info():
         "latitude": content[1], #Hardware GPS Sendsor Value 
         "longitude":content[3], #Hardware GPS Sendsor Value
         "internet":hardware.network_speed_test(),#hardware.network_speed_test()
+        "ping": hardware.ping(),#hardware.ping_test()
     }
     
     return json.dumps(info)
@@ -35,12 +36,12 @@ def return_data():
     content = get_sensor()
     content.split(' ')
     info = {
-        "soil_ec" : content[1], #Soil EC Sensor Value
-        "soil_temp" : content[3],#Soil Temperature Sensor Value
-        "soil_humidity" : content[5], #Soil Humidity Sensor Value
-        "air_temp" : content[7], #Air Temperature Sensor Value
-        "air_humidity" : content[9], #Air Humidity Sensor Value
-        "sunlight" : content[11], #Sunlight Sensor Value
+        "soil_ec" : float(content[1]), #Soil EC Sensor Value
+        "soil_temp" : float(content[3]),#Soil Temperature Sensor Value
+        "soil_humidity" : float(content[5]), #Soil Humidity Sensor Value
+        "air_temp" : float(content[7]), #Air Temperature Sensor Value
+        "air_humidity" : float(content[9]), #Air Humidity Sensor Value
+        "sunlight" : int(content[11]), #Sunlight Sensor Value
     }
     return json.dumps(info)    
 

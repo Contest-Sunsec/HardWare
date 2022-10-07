@@ -51,17 +51,18 @@ def network_speed_test():
     network_speed_test = os.popen("speedtest-cli --secure").read()
     network_speed = network_speed_test.split("\n")
     
-    return "Download Speed: {}  Upload Speed: {}".format(network_speed[6].replace("Download: ",""), network_speed[8].replace("Upload: ",""))
+    return float(network_speed[6].replace("Download: ",""))
 
-def ping(address):
+def ping():
     #ping address
-    ping = os.popen("ping -c 1 {}".format(address)).read()
-    return ping
+    ping = os.popen("ping -c 1 google.com").read().split(" ")
+    ping = ping[13].replace("time=","").replace("ms","") 
+    return float(ping)
 
 def hardware_voltage():
     #Hardware Voltage
     hardware_voltage = os.popen("vcgencmd measure_volts").read()
-    return hardware_voltage.replace("volt=","").replace("\n","")
+    return float(hardware_voltage.replace("volt=","").replace("\n",""))
 
 def apt_update():
     os.system("sudo apt update")
