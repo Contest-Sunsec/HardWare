@@ -12,36 +12,24 @@ def get_sensor():
     content = seri.readline() #시리얼 포트에서 데이터 수신
     return content
 
-def get_info():
-    seri.write('2'.encode()) #시리얼 포트에 데이터 전송
-    content = seri.readline() #시리얼 포트에서 데이터 수신
-    return content
 
 def hardware_info():
-    content = get_info()
-    content.split(' ')
-    info =  {
-        "model" : "FARMSELT-123314-134134", #FARMSELT Model Name
-        "time":time.time(),
-        "uptime":hardware.uptime_info,#hardware.uptime_info(),
-        "latitude": content[1], #Hardware GPS Sendsor Value 
-        "longitude":content[3], #Hardware GPS Sendsor Value
-        "internet":hardware.network_speed_test(),#hardware.network_speed_test()
-        "ping": hardware.ping(),#hardware.ping_test()
-    }
-    
-    return json.dumps(info)
-
-def return_data():
     content = get_sensor()
     content.split(' ')
-    info = {
-        "soil_ec" : float(content[1]), #Soil EC Sensor Value
-        "soil_temp" : float(content[3]),#Soil Temperature Sensor Value
-        "soil_humidity" : float(content[5]), #Soil Humidity Sensor Value
-        "air_temp" : float(content[7]), #Air Temperature Sensor Value
-        "air_humidity" : float(content[9]), #Air Humidity Sensor Value
-        "sunlight" : int(content[11]), #Sunlight Sensor Value
+    info =  {
+        "id" : "FARMSELT-12341234-1234", #FARMSELT Model Name
+        "soilEc" : float(content[0]), #Soil EC Sensor Value
+        "soilTemp" : float(content[2]),#Soil Temperature Sensor Value
+        "soilHum" : float(content[4]), #Soil Humidity Sensor Value
+        "airTemp" : float(content[6]), #Air Temperature Sensor Value
+        "airHum" : float(content[8]), #Air Humidity Sensor Value
+        "solar" : int(content[10]), #Sunlight Sensor Value
+        "uptime":hardware.uptime_info,#hardware.uptime_info()
+        "speed":hardware.network_speed_test(),#hardware.network_speed_test()
+        "ping": hardware.ping(),#hardware.ping_test()
+        "latitude": content[12], #Hardware GPS Sendsor Value 
+        "longitude":content[14], #Hardware GPS Sendsor Value
+
     }
     return json.dumps(info)    
 
