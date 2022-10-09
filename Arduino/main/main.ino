@@ -6,8 +6,8 @@
 #define soil_sensor A1 //Soil Humidity Sensor pin
 #define light_sensor A2 //Light Sensor pin
 #define soil_sensor A1
+#define DHTPIN 2
 
-int DHTPIN = 2;
 int GPS_RX = 3, GPX_TX = 4;
 
 int soil_ec = 0;
@@ -116,23 +116,36 @@ void setup() {
 }
 
 void loop() {
+
+  int h = dht.readTemperature();
+  int t = dht.readHumidity();
+  
+  if(h < 0){
+    h = h*(-1); 
+  }
+  if(h > 0 && t > 0) { 
+    air_temp = h; //read air temp
+    air_hum = t; //read air humidity
+  }
+  soil_hum = analogRead(soil_sensor); //read soil humidity
+  soil_hum = map(soil_hum, 170, 1023, 100, 0); // %
+  light = analogRead(light_sensor); //read light
+  
   if(Serial.available()){
     char cmd = Serial.read();
     if(cmd == 'g'){
-      Serial.println('GET');
-
-      air_temp = dht.readTemperature(); //read air temp
-      air_hum = dht.readHumidity(); //read air humidity
-      soil_hum = analogRead(soil_sensor); //read soil humidity
-      light = analogRead(light_sensor); //read light
-
-      Serial.println(soil_ec + " "); //send soil ec
-      Serial.println(soil_temp + " "); //send soil temp
-      Serial.println(soil_hum + " "); //send soil humidity
-      Serial.println(air_temp + " "); //send air temp
-      Serial.println(air_hum + " "); //send air humidity
-      Serial.println(soil_hum + " "); //send soil humidity
-      Serial.println(light + " "); //send light
+      Serial.print("Soil EC : ");
+      Serial.println(soil_ec); //send soil ec
+      Serial.print("Soil Temp : ");
+      Serial.println(soil_temp); //send soil temp
+      Serial.print("Soil Hum : ");
+      Serial.println(soil_hum); //send soil humidity
+      Serial.print("Air Temp : ");
+      Serial.println(air_temp); //send air temp
+      Serial.print("Air Hum : ");
+      Serial.println(air_hum); //send air humidity
+      Serial.print("Solar : ");
+      Serial.println(light); //send light
       gps();
       Serial.print(LatF, 15); //send latitude
       Serial.println(LongF, 15); //send longitude

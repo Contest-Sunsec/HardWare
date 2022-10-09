@@ -7,8 +7,8 @@ board = Arduino('/dev/ttyACM0') #시리얼 포트 지정
 seri = serial.Serail(board, baudrate=9600,timeout=None) #시리얼 포트 설정
 print("Serial name" + seri.name)#시리얼 포트 이름 출력
 
-def get_sensor():
-    seri.write('1'.encode()) #시리얼 포트에 데이터 전송
+def get_sensor():   
+    seri.write('g'.encode()) #시리얼 포트에 데이터 전송
     content = seri.readline() #시리얼 포트에서 데이터 수신
     return content
 
@@ -17,7 +17,7 @@ def hardware_info():
     content = get_sensor()
     content.split(' ')
     info =  {
-        "id" : "FARMSELT-12341234-1234", #FARMSELT Model Name
+        "id" : "FARMSELT-example-1234", #FARMSELT Model Name
         "soilEc" : float(content[0]), #Soil EC Sensor Value
         "soilTemp" : float(content[2]),#Soil Temperature Sensor Value
         "soilHum" : float(content[4]), #Soil Humidity Sensor Value
