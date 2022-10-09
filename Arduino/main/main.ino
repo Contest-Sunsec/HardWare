@@ -111,8 +111,6 @@ void setup() {
   delay(100);
   digitalWrite(9,LOW);
   digitalWrite(8,HIGH);
-
-  Serial.println("System Start...");
 }
 
 void loop() {
@@ -134,20 +132,14 @@ void loop() {
   if(Serial.available()){
     char cmd = Serial.read();
     if(cmd == 'g'){
-      Serial.print("Soil EC : ");
       Serial.println(soil_ec); //send soil ec
-      Serial.print("Soil Temp : ");
       Serial.println(soil_temp); //send soil temp
-      Serial.print("Soil Hum : ");
       Serial.println(soil_hum); //send soil humidity
-      Serial.print("Air Temp : ");
       Serial.println(air_temp); //send air temp
-      Serial.print("Air Hum : ");
       Serial.println(air_hum); //send air humidity
-      Serial.print("Solar : ");
       Serial.println(light); //send light
       gps();
-      Serial.print(LatF, 15); //send latitude
+      Serial.println(LatF, 15); //send latitude
       Serial.println(LongF, 15); //send longitude
 
       led();
