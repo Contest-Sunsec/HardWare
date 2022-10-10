@@ -18,7 +18,6 @@ def get_sensor():
 
 def hardware_info():
     content = get_sensor()
-    content.split(' ')
     info =  {
         "id" : "A1B2C3", #FARMSELT Model Name
         "soilEc" : float(content[0]), #Soil EC Sensor Value
@@ -28,11 +27,11 @@ def hardware_info():
         "airHum" : float(content[4]), #Air Humidity Sensor Value
         "solar" : int(content[5]), #Sunlight Sensor Value
         "uptime":hardware.uptime_info,#hardware.uptime_info()
-        "speed":hardware.network_speed_test(),#hardware.network_speed_test()
-        "ping": hardware.ping(),#hardware.ping_test()
         "latitude": content[6], #Hardware GPS Sendsor Value 
         "longitude":content[7], #Hardware GPS Sendsor Value
-
+        "speed":hardware.network_speed_test(),#hardware.network_speed_test()
+        "ping": hardware.ping(),#hardware.ping_test()
+        "bettery":hardware.hardware_voltage()#hardware.bettery_info()
     }
     return json.dumps(info)    
 

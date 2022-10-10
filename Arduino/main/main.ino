@@ -126,7 +126,7 @@ void loop() {
     air_hum = t; //read air humidity
   }
   soil_hum = analogRead(soil_sensor); //read soil humidity
-  soil_hum = map(soil_hum, 170, 1023, 100, 0); // %
+  soil_hum = map(soil_hum, 170, 1023, 100, 0); // %로 변환
   light = analogRead(light_sensor); //read light
   
   if(Serial.available()){
